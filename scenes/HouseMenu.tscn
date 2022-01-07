@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[node name="HouseMenu" type="HBoxContainer"]
+margin_right = 512.0
+margin_bottom = 400.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VillagerContainer" type="VBoxContainer" parent="."]
+margin_right = 80.0
+margin_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="VillagerContainer"]
+margin_right = 80.0
+margin_bottom = 14.0
+text = "Insert Name"
+
+[node name="TextureRect" type="TextureRect" parent="VillagerContainer"]
+margin_top = 18.0
+margin_right = 80.0
+margin_bottom = 82.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="DiscriptionLabel" type="Label" parent="VillagerContainer"]
+margin_top = 86.0
+margin_right = 80.0
+margin_bottom = 100.0
+
+[node name="DialogContainer" type="VBoxContainer" parent="."]
+margin_left = 84.0
+margin_right = 84.0
+margin_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
