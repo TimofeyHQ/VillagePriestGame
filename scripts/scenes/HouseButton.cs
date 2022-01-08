@@ -1,28 +1,30 @@
 using Godot;
 using System;
-
-public class HouseButton : TextureButton
+namespace VillagePriestGame.Scenes
 {
-    // Declare member variables here. Examples:
-    [Export]
-    private string OwnerVillagerName = "Priest";
-    [Signal]
-    public delegate void HouseSelectedSignal(string villagerName);
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public class HouseButton : TextureButton
     {
-        this.Connect(nameof(HouseSelectedSignal), GetParent(), "OpenHouseMenu");
-    }
+        // Declare member variables here. Examples:
+        [Export]
+        private string OwnerVillagerName;
+        [Signal]
+        public delegate void HouseSelectedSignal(string villagerName);
 
-    public void OnHouseButtonUp()
-    {
-        EmitSignal(nameof(HouseSelectedSignal), OwnerVillagerName);
-    }
+        // Called when the node enters the scene tree for the first time.
+        public override void _Ready()
+        {
+            this.Connect(nameof(HouseSelectedSignal), GetParent(), "OpenHouseMenu");
+        }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+        public void OnHouseButtonUp()
+        {
+            EmitSignal(nameof(HouseSelectedSignal), OwnerVillagerName);
+        }
+
+    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
+    //  public override void _Process(float delta)
+    //  {
+    //      
+    //  }
+    };
 }
