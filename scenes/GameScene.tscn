@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/Scenes/GameScene.cs" type="Script" id=1]
 [ext_resource path="res://scenes/HouseButton.tscn" type="PackedScene" id=2]
@@ -15,11 +15,17 @@
 [ext_resource path="res://images/houses/house1.png" type="Texture" id=13]
 [ext_resource path="res://images/interface/diary.png" type="Texture" id=14]
 [ext_resource path="res://scripts/Scenes/DiaryButton.cs" type="Script" id=15]
+[ext_resource path="res://scenes/DiaryScene.tscn" type="PackedScene" id=16]
 
-[node name="GameScene" type="Node2D"]
+[node name="GameScene" type="Control"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="BackgroundLayer"]
 margin_right = 1920.0
 margin_bottom = 1080.0
 rect_scale = Vector2( 0.5, 0.5 )
@@ -28,7 +34,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bridge" type="TextureRect" parent="."]
+[node name="Bridge" type="TextureRect" parent="BackgroundLayer"]
 margin_left = 161.0
 margin_top = 299.0
 margin_right = 358.0
@@ -39,7 +45,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ChurchButton" parent="." instance=ExtResource( 2 )]
+[node name="ButtonLayer" type="CanvasLayer" parent="."]
+
+[node name="ChurchButton" parent="ButtonLayer" instance=ExtResource( 2 )]
 margin_left = 35.0
 margin_top = 362.0
 margin_right = 283.0
@@ -47,14 +55,15 @@ margin_bottom = 627.0
 texture_normal = ExtResource( 4 )
 OwnerVillagerName = "God"
 
-[node name="PriestHouseButton" parent="." instance=ExtResource( 2 )]
+[node name="PriestHouseButton" parent="ButtonLayer" instance=ExtResource( 2 )]
 margin_left = 342.0
 margin_top = 405.0
 margin_right = 501.0
 margin_bottom = 529.0
 texture_normal = ExtResource( 9 )
+OwnerVillagerName = "Priest"
 
-[node name="House1Button" parent="." instance=ExtResource( 2 )]
+[node name="House1Button" parent="ButtonLayer" instance=ExtResource( 2 )]
 margin_left = 231.0
 margin_top = 208.0
 margin_right = 588.0
@@ -62,49 +71,55 @@ margin_bottom = 374.0
 texture_normal = ExtResource( 13 )
 OwnerVillagerName = "Farmer"
 
-[node name="House2Button" parent="." instance=ExtResource( 2 )]
+[node name="House2Button" parent="ButtonLayer" instance=ExtResource( 2 )]
 margin_left = 405.0
 margin_top = 202.0
 margin_right = 705.0
 margin_bottom = 368.0
 texture_normal = ExtResource( 8 )
+OwnerVillagerName = "Barterer"
 
-[node name="House3Button" parent="." instance=ExtResource( 2 )]
+[node name="House3Button" parent="ButtonLayer" instance=ExtResource( 2 )]
 margin_left = 577.0
 margin_top = 199.0
 margin_right = 689.0
 margin_bottom = 285.0
 texture_normal = ExtResource( 11 )
+OwnerVillagerName = "Butcher"
 
-[node name="House4Button" parent="." instance=ExtResource( 2 )]
+[node name="House4Button" parent="ButtonLayer" instance=ExtResource( 2 )]
 margin_left = 674.0
 margin_top = 197.0
 margin_right = 886.0
 margin_bottom = 308.0
 texture_normal = ExtResource( 7 )
+OwnerVillagerName = "Hunter"
 
-[node name="House5Button" parent="." instance=ExtResource( 2 )]
+[node name="House5Button" parent="ButtonLayer" instance=ExtResource( 2 )]
 margin_left = 798.0
 margin_top = 192.0
 margin_right = 960.0
 margin_bottom = 305.0
 texture_normal = ExtResource( 10 )
+OwnerVillagerName = "Woodsman"
 
-[node name="House6Button" parent="." instance=ExtResource( 2 )]
+[node name="House6Button" parent="ButtonLayer" instance=ExtResource( 2 )]
 margin_left = 607.0
 margin_top = 254.0
 margin_right = 886.0
 margin_bottom = 483.0
 texture_normal = ExtResource( 5 )
+OwnerVillagerName = "Fisherman"
 
-[node name="House7Button" parent="." instance=ExtResource( 2 )]
+[node name="House7Button" parent="ButtonLayer" instance=ExtResource( 2 )]
 margin_left = 805.0
 margin_top = 276.0
 margin_right = 1061.0
 margin_bottom = 472.0
 texture_normal = ExtResource( 12 )
+OwnerVillagerName = "Forager"
 
-[node name="DiaryButton" type="TextureButton" parent="."]
+[node name="DiaryButton" type="TextureButton" parent="ButtonLayer"]
 margin_left = 839.0
 margin_top = 399.0
 margin_right = 1074.0
@@ -115,3 +130,10 @@ script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+
+[node name="DiaryScene" parent="MenuLayer" instance=ExtResource( 16 )]
+visible = false
+
+[connection signal="button_up" from="ButtonLayer/DiaryButton" to="MenuLayer/DiaryScene" method="OpenDiary"]
