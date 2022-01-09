@@ -5,8 +5,6 @@ G:\Projects\VillagePriestGame\.mono\temp\obj\Debug\VillagePriestGame.AssemblyInf
 G:\Projects\VillagePriestGame\.mono\temp\obj\Debug\VillagePriestGame.csproj.CoreCompileInputs.cache
 G:\Projects\VillagePriestGame\.mono\temp\bin\Debug\VillagePriestGame.deps.json
 G:\Projects\VillagePriestGame\.mono\temp\bin\Debug\VillagePriestGame.dll
-G:\Projects\VillagePriestGame\.mono\temp\bin\Debug\ref\VillagePriestGame.dll
 G:\Projects\VillagePriestGame\.mono\temp\bin\Debug\VillagePriestGame.pdb
 G:\Projects\VillagePriestGame\.mono\temp\obj\Debug\VillagePriestGame.dll
-G:\Projects\VillagePriestGame\.mono\temp\obj\Debug\ref\VillagePriestGame.dll
 G:\Projects\VillagePriestGame\.mono\temp\obj\Debug\VillagePriestGame.pdb

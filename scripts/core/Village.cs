@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 
 namespace VillagePriestGame.Core
 {
@@ -9,9 +9,18 @@ namespace VillagePriestGame.Core
         public Characteristic TimeOfDay {get; private set; }
 
         public void PassTime()
-        {
-            if (TimeOfDay > ++TimeOfDay)
+        {   
+            if (TimeOfDay.CurrentValue == 1)
+                foreach (var villager in Community)
+                    if (!villager.isHelpingSomeone)
+                        villager.DayRoutine();
+            if (TimeOfDay.CurrentValue == TimeOfDay.MaxValue)
+            {
                 CurrentDay++;
+                TimeOfDay -= TimeOfDay.MaxValue;
+            }
+            else 
+                TimeOfDay ++;
         }
 
         public Villager GetVillager(string name)
@@ -20,6 +29,13 @@ namespace VillagePriestGame.Core
                 if (villager.VillagerName == name)
                     return villager;
             return null;
+        }
+
+        public Village()
+        {
+            Community = new Villager[7];
+            CurrentDay = 0;
+            TimeOfDay = new Characteristic(3);
         }
     };
 }

@@ -3,7 +3,6 @@ namespace VillagePriestGame.Enums
     public enum Skill
 
     {
-        Cooking,
         Woodwork,
         Farming,
         Foraging,

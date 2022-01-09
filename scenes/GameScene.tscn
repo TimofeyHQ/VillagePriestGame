@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/Scenes/GameScene.cs" type="Script" id=1]
 [ext_resource path="res://scenes/HouseButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://images/background/background.png" type="Texture" id=3]
+[ext_resource path="res://images/background/morning.png" type="Texture" id=3]
 [ext_resource path="res://images/houses/church.png" type="Texture" id=4]
 [ext_resource path="res://images/houses/house6.png" type="Texture" id=5]
 [ext_resource path="res://images/background/bridge.png" type="Texture" id=6]
@@ -16,6 +16,7 @@
 [ext_resource path="res://images/interface/diary.png" type="Texture" id=14]
 [ext_resource path="res://scripts/Scenes/DiaryButton.cs" type="Script" id=15]
 [ext_resource path="res://scenes/DiaryScene.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scripts/Scenes/Background.cs" type="Script" id=17]
 
 [node name="GameScene" type="Control"]
 script = ExtResource( 1 )
@@ -30,6 +31,7 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
+script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -136,4 +138,5 @@ __meta__ = {
 [node name="DiaryScene" parent="MenuLayer" instance=ExtResource( 16 )]
 visible = false
 
+[connection signal="ready" from="BackgroundLayer/Background" to="." method="onBackgroundReady"]
 [connection signal="button_up" from="ButtonLayer/DiaryButton" to="MenuLayer/DiaryScene" method="OpenDiary"]

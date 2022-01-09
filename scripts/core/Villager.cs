@@ -6,30 +6,36 @@ namespace VillagePriestGame.Core
     public class Villager
     {
         public String VillagerName { get; set; }
-        public Dictionary <string, Characteristic> Relationships;
-        public Dictionary <Enums.Farm, Characteristic> FarmStock;
-        public Dictionary <Enums.Resource, Characteristic> Resources;
-        public Dictionary <Enums.Skill, Characteristic> Skills;
+        public String Role { get; set; }
+        public Dictionary <string, Characteristic> Relationships = new Dictionary <string, Characteristic> ();
+        public Dictionary <Enums.Farm, Characteristic> FarmStock = new Dictionary <Enums.Farm, Characteristic>();
+        public Dictionary <Enums.Resource, Characteristic> Resources = new Dictionary <Enums.Resource, Characteristic>();
+        public Dictionary <Enums.Skill, Characteristic> Skills = new Dictionary <Enums.Skill, Characteristic>();
+        public bool isHelpingSomeone; 
         readonly static int WaterDailyNeed = 3;
-        readonly static int FoodDailyNeed = 3;
-        readonly static int WoodDailyNeed = 3;
+        public readonly static int FoodDailyNeed = 3;
+        public readonly static int WoodDailyNeed = 3;
         private static Dictionary <Enums.Farm, (int Food, int Water)> Coeficients; 
-        private bool isHelpingSomeone; 
-        public Villager(string name)
+
+        public Villager()
         {
-            this.VillagerName = name;
             isHelpingSomeone = false;
             if (Coeficients == null)
                 {
-                    Coeficients = new();
+                    Coeficients = new Dictionary <Enums.Farm, (int Food, int Water)>();
                     Coeficients[Enums.Farm.Chicken] = (2, 0);
                     Coeficients[Enums.Farm.Cow] = (5, 5);
                     Coeficients[Enums.Farm.Goat] = (3, 3);
                     Coeficients[Enums.Farm.Greens] = (1, 1);
                     Coeficients[Enums.Farm.Horse] = (0, 0);
                 }
+            for (Enums.Farm i = 0; (int)i < 5; i++)
+                this.FarmStock[i] = new Characteristic(100);
+            for (Enums.Resource i = 0; (int)i < 3; i++)
+                Resources[i] = new Characteristic(100);
+            for (Enums.Skill i = 0; (int)i < 8; i++)
+                this.Skills[i] = new Characteristic(100);
         }
-
         public bool Decide(string villagerName)
         {
             var willingness = 100 * 
@@ -254,12 +260,24 @@ namespace VillagePriestGame.Core
             }
             else GetWood();
         }
-        public void Give(Villager taker,  Enums.Farm animalOrGreen, int count)
+        public void GiveFarm(Villager taker,  Enums.Farm animalOrGreen, int count)
         {
             if (this.FarmStock[animalOrGreen] >= count)
             {
                 taker.FarmStock[animalOrGreen] += count;
+                taker.Relationships["Priest"] += 15;
+                taker.Relationships[this.VillagerName] += 10;
                 this.FarmStock[animalOrGreen] -= count;
+            }
+        }
+        public void GiveResource(Villager taker,  Enums.Resource resource, int count)
+        {
+            if (this.Resources[resource] >= count)
+            {
+                taker.Resources[resource] += count;
+                taker.Relationships["Priest"] += 15;
+                taker.Relationships[this.VillagerName] += 10;
+                this.Resources[resource] -= count;
             }
         }
     };

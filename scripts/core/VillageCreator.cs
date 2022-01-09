@@ -1,5 +1,4 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using System.IO;
 
 namespace VillagePriestGame.Core
@@ -9,8 +8,14 @@ namespace VillagePriestGame.Core
         public Village ReadVillageFromJson(string pathToJson)
         {
             var jsonString = File.ReadAllText(pathToJson);
-            var jsonData = JsonSerializer.Deserialize<Village>(jsonString);
+            var jsonData = JsonConvert.DeserializeObject<Village>(jsonString);
             return jsonData;
+        }
+
+        public void WriteVillageToJson(Village village, string pathToJson)
+        {
+            string jsonedVillage = JsonConvert.SerializeObject(village);
+            File.WriteAllText(pathToJson, jsonedVillage);
         }
     };
 }
