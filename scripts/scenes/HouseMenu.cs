@@ -9,7 +9,7 @@ namespace VillagePriestGame.Scenes
         Core.Villager Villager;
         Label NameTagLabel;
         Label GoodsLabel;
-        TextureRect Portrait;
+        Portrait Portrait;
         [Signal]
         public delegate void AddDiaryRecordSignal(string record);
         
@@ -35,10 +35,12 @@ namespace VillagePriestGame.Scenes
                     }
             if (temp == "")
                 result += " nothing of animals or green.";
+            else
+                result += temp;
             result += ".\n";
             foreach (var resourse in Villager.Resources)
             {
-                result += ("Has " + resourse.Key.ToString() + " enough for " + (decimal)resourse.Value.CurrentValue / 3 + " days.\n");
+                result += ("Has " + resourse.Key.ToString() + " enough for " + Decimal.Truncate(100 * (decimal)resourse.Value.CurrentValue / 3)/100 + " days.\n");
             }
             return result;
         }
@@ -53,19 +55,29 @@ namespace VillagePriestGame.Scenes
             
         }
 
+        public void OpenMenu(string villagerName)
+        {
+            var Game = (GetParent().GetParent() as GameScene);
+            Villager = Game.GetVillager(villagerName);
+            NameTagLabel.Text = Villager.VillagerName + " The " +  Villager.Role;
+            GoodsLabel.Text = GoodsToString();
+            Portrait.Texture = GD.Load<Texture>("./images/interface/portraits/" + Villager.VillagerName + ".png");
+
+            this.Visible = true;
+        }
+
         private void OnNameAndRoleLabelReady()
         {
-            NameTagLabel = GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetChild(0) as Label;
+            NameTagLabel = GetChild(0).GetChild(0).GetChild(0).GetChild(0) as Label;
+        }
+        private void OnGoodsLabelReady()
+        {
+            GoodsLabel = GetChild(0).GetChild(0).GetChild(0).GetChild(1)  as Label;
         }
 
         private void OnPortraitReady()
         {
-            Portrait = GetChild(0).GetChild(0).GetChild(0).GetChild(0) as TextureRect;
-        }
-
-        private void OnGoodsLabelReady()
-        {
-            GoodsLabel = GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetChild(1)  as Label;
+            Portrait = GetChild(0) as Portrait;
         }
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     //  public override void _Process(float delta)

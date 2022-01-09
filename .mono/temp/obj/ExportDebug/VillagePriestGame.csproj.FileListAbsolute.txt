@@ -1,6 +1,5 @@
 G:\Projects\VillagePriestGame\.mono\temp\bin\ExportDebug\VillagePriestGame.deps.json
 G:\Projects\VillagePriestGame\.mono\temp\bin\ExportDebug\VillagePriestGame.dll
-G:\Projects\VillagePriestGame\.mono\temp\bin\ExportDebug\ref\VillagePriestGame.dll
 G:\Projects\VillagePriestGame\.mono\temp\bin\ExportDebug\VillagePriestGame.pdb
 G:\Projects\VillagePriestGame\.mono\temp\obj\ExportDebug\VillagePriestGame.csproj.AssemblyReference.cache
 G:\Projects\VillagePriestGame\.mono\temp\obj\ExportDebug\VillagePriestGame.GeneratedMSBuildEditorConfig.editorconfig
@@ -8,5 +7,4 @@ G:\Projects\VillagePriestGame\.mono\temp\obj\ExportDebug\VillagePriestGame.Assem
 G:\Projects\VillagePriestGame\.mono\temp\obj\ExportDebug\VillagePriestGame.AssemblyInfo.cs
 G:\Projects\VillagePriestGame\.mono\temp\obj\ExportDebug\VillagePriestGame.csproj.CoreCompileInputs.cache
 G:\Projects\VillagePriestGame\.mono\temp\obj\ExportDebug\VillagePriestGame.dll
-G:\Projects\VillagePriestGame\.mono\temp\obj\ExportDebug\ref\VillagePriestGame.dll
 G:\Projects\VillagePriestGame\.mono\temp\obj\ExportDebug\VillagePriestGame.pdb
