@@ -18,10 +18,10 @@ namespace VillagePriestGame.Scenes
         private void OnTimeChange(int time)
         {
             Texture picture;
-            if (time == 0) picture = GD.Load<Texture>("./images/background/morning.png");
-            else if (time == 1) picture = GD.Load<Texture>("./images/background/day.png");
-            else if (time == 2) picture = GD.Load<Texture>("./images/background/evening.png");
-            else picture = GD.Load<Texture>("./images/background/night.png");
+            if (time == 0) picture = GD.Load<Texture>("res://images/background/morning.png");
+            else if (time == 1) picture = GD.Load<Texture>("res://images/background/day.png");
+            else if (time == 2) picture = GD.Load<Texture>("res://images/background/evening.png");
+            else picture = GD.Load<Texture>("res://images/background/night.png");
             this.Texture = picture;
         }
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.

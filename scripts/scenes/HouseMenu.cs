@@ -61,7 +61,7 @@ namespace VillagePriestGame.Scenes
             Villager = Game.GetVillager(villagerName);
             NameTagLabel.Text = Villager.VillagerName + " The " +  Villager.Role;
             GoodsLabel.Text = GoodsToString();
-            Portrait.Texture = GD.Load<Texture>("./images/interface/portraits/" + Villager.VillagerName + ".png");
+            Portrait.Texture = GD.Load<Texture>("res://images/interface/portraits/" + Villager.VillagerName + ".png");
 
             this.Visible = true;
         }

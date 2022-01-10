@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using System.IO;
+using Godot;
 
 namespace VillagePriestGame.Core
 {
@@ -7,15 +7,21 @@ namespace VillagePriestGame.Core
     {
         public Village ReadVillageFromJson(string pathToJson)
         {
-            var jsonString = File.ReadAllText(pathToJson);
+            var file = new File();
+            file.Open("res://" + pathToJson, File.ModeFlags.Read);
+            var jsonString = file.GetAsText();
             var jsonData = JsonConvert.DeserializeObject<Village>(jsonString);
+            file.Close();
             return jsonData;
         }
 
         public void WriteVillageToJson(Village village, string pathToJson)
         {
             string jsonedVillage = JsonConvert.SerializeObject(village);
-            File.WriteAllText(pathToJson, jsonedVillage);
+            var file = new File();
+            file.Open("res://" + pathToJson, File.ModeFlags.Write);
+            file.StoreString(jsonedVillage);
+            file.Close();
         }
     };
 }
